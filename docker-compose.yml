@@ -21,15 +21,15 @@ services:
         gitlab_rails['smtp_enable_starttls_auto'] = true
         nginx['listen_port'] = 443
         nginx['redirect_http_to_https'] = true
-        nginx['ssl_certificate'] = "/etc/ssl/certs/gitlab/server.crt"
-        nginx['ssl_certificate_key'] = "/etc/ssl/certs/gitlab/server.key"
+        nginx['ssl_certificate'] = "/etc/ssl/certs/gitlab/fullchain.pem"
+        nginx['ssl_certificate_key'] = "/etc/ssl/certs/gitlab/privkey.pem"
         nginx['ssl_protocols'] = "TLSv1.1 TLSv1.2"
     ports:
       - '80:80'
       - '443:443'
       - '22:22'
     volumes:
+      - ./certs:/etc/ssl/certs/gitlab
       - ./volume_data/conf:/etc/gitlab
-      - ./volume_data/ssl:/etc/ssl/certs/gitlab
       - ./volume_data/logs:/var/log/gitlab
       - ./volume_data/main:/var/opt/gitlab
