@@ -2,7 +2,7 @@
 
 Deploy GitLab using docker-compose
 
-## Requirement
+## Requirements
 
 1. Need to modify docker-compose.yml
 
